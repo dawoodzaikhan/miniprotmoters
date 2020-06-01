@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.minipromoter.viewmodels.ChatsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragment.ChatsFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMessages"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/hello_blank_fragment"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/ilName"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/user_message_item" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/five_dp"
+            android:layout_marginBottom="@dimen/ten_dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/sendMessage"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusedByDefault="false"
+                android:hint="@string/message"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:text="@={viewModel.message}"
+                tools:ignore="UnusedAttribute" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/sendMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{v->viewModel.addUserMessage()}"
+            android:padding="@dimen/ten_dp"
+            android:src="@drawable/ic_forward"
+            app:layout_constraintBottom_toBottomOf="@+id/ilName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ilName"
+            app:layout_constraintTop_toTopOf="@+id/ilName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/productsFragment">
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.example.minipromoter.fragment.ProductsFragment"
+        android:label="Mini Promoter"
+        tools:layout="@layout/fragment_products">
+        <action
+            android:id="@+id/action_productsFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_campainsFragment"
+            app:destination="@id/campainsFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_productSubscribers"
+            app:destination="@id/productSubscribers" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.minipromoter.fragment.UserFragment"
+        android:label="Subscribers"
+        tools:layout="@layout/fragment_user">
+        <argument
+            android:name="prodName"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productSubscribers"
+        android:name="com.example.minipromoter.fragment.ProductSubscribers"
+        android:label="Product Subscribers"
+        tools:layout="@layout/product_subscribers_fragment">
+        <argument
+            android:name="productModel"
+            app:argType="com.example.minipromoter.models.ProductModel" />
+        <action
+            android:id="@+id/action_productSubscribers_to_chatsFragment"
+            app:destination="@id/chatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/campainsFragment"
+        android:name="com.example.minipromoter.fragment.CampaignsFragment"
+        android:label="Product Campaigns"
+        tools:layout="@layout/fragment_campains">
+        <argument
+            android:name="productModel"
+            app:argType="com.example.minipromoter.models.ProductModel" />
+        <action
+            android:id="@+id/action_campainsFragment_to_campainMessagesFragment"
+            app:destination="@id/campainMessagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/campainMessagesFragment"
+        android:name="com.example.minipromoter.fragment.CampaignMessagesFragment"
+        android:label="Campaign Message"
+        tools:layout="@layout/fragment_campain_messages">
+        <argument
+            android:name="model"
+            app:argType="com.example.minipromoter.models.Campaign" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatsFragment"
+        android:name="com.example.minipromoter.fragment.ChatsFragment"
+        android:label="Chats"
+        tools:layout="@layout/fragment_chats">
+        <argument
+            android:name="userModel"
+            app:argType="com.example.minipromoter.models.UserModel" />
+    </fragment>
+</navigation>

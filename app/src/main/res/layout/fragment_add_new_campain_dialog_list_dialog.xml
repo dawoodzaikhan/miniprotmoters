@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.minipromoter.viewmodels.AddNewCampaignDialogViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/twenty_dp"
+        android:paddingTop="@dimen/twenty_dp"
+        android:paddingEnd="@dimen/twenty_dp"
+        android:paddingBottom="@dimen/twenty_dp"
+        tools:context=".dialogs.AddNewCampaignDialog"
+        tools:listitem="@layout/fragment_add_new_campain_dialog_list_dialog_item">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight_dp"
+            android:layout_marginTop="@dimen/twenty_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:prefixText='@{viewModel.productModel.productName+": "}'>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusedByDefault="false"
+                android:hint="@string/campain_name"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:text="@={viewModel.tittle}"
+                tools:ignore="UnusedAttribute" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight_dp"
+            android:layout_marginTop="@dimen/twenty_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ilName">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusedByDefault="false"
+                android:gravity="top"
+                android:hint="@string/campain_message"
+                android:imeOptions="actionDone"
+                android:lines="3"
+                android:text="@={viewModel.message}"
+                tools:ignore="UnusedAttribute" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/itExpireMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/eight_dp"
+            android:layout_marginTop="@dimen/twenty_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tiMessage">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etExpireMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusedByDefault="false"
+                android:gravity="top"
+                android:hint="@string/expire_message"
+                android:imeOptions="actionDone"
+                android:lines="3"
+                android:text="@={viewModel.expireMessage}"
+                tools:ignore="UnusedAttribute" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@={viewModel.isPolls}"
+            android:text="For Polls ?"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itExpireMessage" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            app:cardCornerRadius="@dimen/five_dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.isPolls?View.VISIBLE:View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/switchMaterial"
+            tools:layout_editor_absoluteX="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/twenty_dp"
+
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/eight_dp"
+                    android:layout_marginTop="@dimen/twenty_dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:prefixText='@{viewModel.productModel.productName+": "}'>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusedByDefault="false"
+                        android:hint="@string/option_1"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:text="@={viewModel.option1}"
+                        tools:ignore="UnusedAttribute" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/eight_dp"
+                    android:layout_marginEnd="@dimen/eight_dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                    app:prefixText='@{viewModel.productModel.productName+": "}'>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusedByDefault="false"
+                        android:hint="@string/option_2"
+                        android:inputType="textEmailAddress"
+                        android:singleLine="true"
+                        android:text="@={viewModel.option2}"
+                        tools:ignore="UnusedAttribute" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:onClick="@{v->viewModel.onAddClicked()}"
+            android:padding="@dimen/ten_dp"
+            android:text="@string/add_campain"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/eighteen_sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
